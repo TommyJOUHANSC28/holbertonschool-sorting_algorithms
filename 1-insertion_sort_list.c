@@ -1,24 +1,46 @@
 #include "sort.h"
 /**
-* swap_nodes - Funtion that sorts a doubly linked list of integers in ascending 
+* swap_nodes - Funtion that sorts a doubly linked list of integers in ascending
 * @h: double pointer h
-* @n 1: double pointer n1
-* @n 2: pointer n2
+* @n1: double pointer n1
+* @n2: pointer n2
 * Return: the big O notations of the time complexity of the Insertion sort
 */
 void swap_nodes(listint_t **h, listint_t **n1, listint_t *n2)
 {
-(*n1)->next= n2->next;
-if(n2->next != NULL)
-n2->next->prev = *n1,
+(*n1)->next = n2->next;
+if (n2->next != NULL)
+n2->next->prev = *n1;
 n2->prev = (*n1)->prev;
-n2->new = *n1;
-if((*n1)->prev != NULL)
+n2->next = *n1;
+if ((*n1)->prev != NULL)
 (*n1)->prev->next = n2;
+else
 *h = n2;
 (*n1)->prev = n2;
-*n1 = prev = n2;
 *n1 = n2->prev;
 }
-
+/**
+* insertion_sort_list - function that sorts a doubly linked list of integers
+*                       in ascending order using the Insertion sort algorithm
+* @list: double pointer for print list
+* Return: 1 notation par line in the best case
+*                             in the average case
+*                             in th worst case
+*/
+void insertion_sort_list(listint_t **list)
+{
+listint_t *iter, *insert, *tmp;
+if (list == NULL || *list == NULL || (*list)->next == NULL)
+return;
+for (iter = (*list)->next; iter != NULL; iter = tmp)
+{
+tmp = iter->next;
+insert = iter->prev;
+while (insert != NULL && iter->n < insert->n)
+{
+swap_nodes(list, &insert, iter);
+print_list((const listint_t *)*list);
+}
+}
 }
