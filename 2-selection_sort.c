@@ -32,13 +32,11 @@ for (i = 0; i < size - 1; i++)
 {
 mini = array + i;
 for (j = i + 1; j < size; j++)
-{
 mini = (array[j] < *mini) ? (array + j) : mini;
 if ((array + i) != mini)
 {
 swap_ints(array + i, mini);
 print_array(array, size);
-}
 }
 }
 }
